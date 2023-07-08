@@ -1,2 +1,2 @@
 # ocp
-Odds Comparison Plugin
+Odds Comparison Plugin.
