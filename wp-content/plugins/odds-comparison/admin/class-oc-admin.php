@@ -76,7 +76,8 @@ class Oc_Admin {
 		 */
 
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/oc-admin.css', array(), $this->version, 'all' );
-
+		wp_enqueue_style( $this->plugin_name . 'odds-block', plugin_dir_url( __FILE__ ) . 'css/oc-gb-odds-block.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name . 'bet-calc-block', plugin_dir_url( __FILE__ ) . 'css/oc-gb-bet-calc-block.css', array(), $this->version, 'all' );
 	}
 
 	/**
@@ -99,7 +100,8 @@ class Oc_Admin {
 		 */
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/oc-admin.js', array( 'jquery' ), $this->version, false );
-
+		wp_enqueue_script( $this->plugin_name . 'odds-block', plugin_dir_url( __FILE__ ) . 'js/oc-gb-odds-block.js', array( 'wp-blocks', 'wp-element' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name . 'bet-calc-block', plugin_dir_url( __FILE__ ) . 'js/oc-gb-bet-calc-block.js', array( 'wp-blocks', 'wp-element' ), $this->version, false );
 	}
 
 	/**
