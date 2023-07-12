@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
             fractionVal.value = odds.decimal.toFractional(parseFloat(target.value)).simplify().n + '/' + odds.decimal.toFractional(parseFloat(target.value)).simplify().d;
             moneyLineVal.value = odds.decimal.toAmerican(parseFloat(target.value));
             impliedVal.value = (100 / ((parseInt(moneyLineVal.value)) + 100)).toFixed(4)*100;
-            impliedVal.value = (100 / (parseInt(moneyLineVal.value) + 100)).toFixed(4)*100;
             winningVal.innerText = ((calcBetAmount.value * decimalVal.value) - calcBetAmount.value).toFixed(2);
             payoutVal.innerText = (calcBetAmount.value * decimalVal.value).toFixed(2);
         }
