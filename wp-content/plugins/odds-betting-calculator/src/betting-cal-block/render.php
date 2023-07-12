@@ -38,7 +38,7 @@
 				<legend>Create Wager</legend>
 				<div class="field">
 					<label for="calc-bet-amount">Bet Amount</label>
-					<input type="text" maxlength="10" minlength="2" id="calc-bet-amount" name="calc-bet-amount" placeholder="ie, $100" pattern="\$?[0-9]{1,5}" value="">
+					<input type="text" maxlength="10" minlength="2" id="calc-bet-amount" name="calc-bet-amount" placeholder="ie, $100" pattern="\$?[0-9]{1,5}" value="" required>
 				</div>
 				<div class="field">
 					<label for="calc-moneyline">American Odds</label>

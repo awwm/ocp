@@ -15,6 +15,7 @@
 		"start": "wp-scripts start --webpack-copy-php"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^26.8.0"
+		"@wordpress/scripts": "^26.8.0",
+		"odds-converter": "^1.0.4"
 	}
 }
