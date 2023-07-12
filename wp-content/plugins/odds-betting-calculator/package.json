@@ -1,0 +1,20 @@
+{
+	"name": "ocbc",
+	"version": "0.0.1",
+	"description": "An odds comparison plugin that will display odds from different selected bookmakers and Betting calculator",
+	"author": "Abdul Wahab",
+	"license": "GPL-2.0-or-later",
+	"main": "build/index.js",
+	"scripts": {
+		"build": "wp-scripts build --webpack-copy-php",
+		"format": "wp-scripts format",
+		"lint:css": "wp-scripts lint-style",
+		"lint:js": "wp-scripts lint-js",
+		"packages-update": "wp-scripts packages-update",
+		"plugin-zip": "wp-scripts plugin-zip",
+		"start": "wp-scripts start --webpack-copy-php"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^26.8.0"
+	}
+}

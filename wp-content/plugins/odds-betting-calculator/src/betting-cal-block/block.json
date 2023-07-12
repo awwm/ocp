@@ -1,0 +1,18 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "sw-odds-bc/bc",
+	"version": "0.0.1",
+	"title": "Betting Calculator",
+	"category": "widgets",
+	"icon": "calculator",
+	"description": "Betting calculator Block",
+	"supports": {
+		"html": false
+	},
+	"textdomain": "ocbc",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"render": "file:./render.php"
+}
