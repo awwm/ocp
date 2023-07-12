@@ -5,8 +5,54 @@
  * Replace them with your own styles or remove the file completely.
  */
 
-.wp-block-sw-odds-bc-ocbc {
-	background-color: #21759b;
-	color: #fff;
-	padding: 2px;
+.wp-block-sw-ocbc-bc {
+	.results {
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+
+		.label {
+			font-size: 0.75rem;
+			font-weight: 600;
+			white-space: nowrap;
+			color: rgb(101, 102, 103);
+		}
+
+		.result-values {
+			text-align: center;
+
+			sup {
+				vertical-align: top;
+			}
+
+			.amount {
+				font-size: 2rem;
+				font-weight: 400;
+			}
+		}
+	}
+
+	.fields-group {
+		fieldset {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+
+			.field {
+				display: flex;
+				flex-direction: column;
+
+				label {
+					font-size: 0.75rem;
+					font-weight: 600;
+					white-space: nowrap;
+					color: rgb(101, 102, 103);
+				}
+
+				input {
+					padding: 10px;
+				}
+			}
+		}		
+	}
 }
