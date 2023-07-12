@@ -1,7 +1,7 @@
 {
   "$schema": "https://schemas.wp.org/trunk/block.json",
   "apiVersion": 3,
-  "name": "sw-odds-bc/bc",
+  "name": "sw-ocbc/bc",
   "version": "0.0.1",
   "title": "Betting Calculator",
   "category": "widgets",
