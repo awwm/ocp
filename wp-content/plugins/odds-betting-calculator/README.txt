@@ -12,4 +12,4 @@ An odds comparison plugin that will display odds from different selected bookmak
 
 == Description ==
 
-After settings up wordpress and installetion of plugin than we may have two new blocks under "Common Category" as "odds" and second one is "Betting Calculator"
+After settings up wordpress and installetion of plugin than we may have two new blocks under "Widgets Category" as "Odds Comparison" and second one is "Betting Calculator"
