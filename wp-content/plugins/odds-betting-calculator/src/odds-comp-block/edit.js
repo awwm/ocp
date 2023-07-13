@@ -29,13 +29,50 @@ import './editor.scss';
  *
  * @return {WPElement} Element to render.
  */
+import { useEffect, useState } from "@wordpress/element";
+
 export default function Edit() {
+	const [oddsData, setOddsData] = useState(null);
+
+    useEffect(() => {
+        fetch('https://api.the-odds-api.com/v4/sports/upcoming/odds/?regions=uk&markets=h2h&apiKey=81fcb06f4f39ab2a3faf0dbe93e23524')
+            .then(response => response.json())
+            .then(data => {
+                setOddsData(data);
+            })
+            .catch(error => {
+                console.error('Error fetching data from the API:', error);
+            });
+    }, []);
+
+	if (!oddsData) {
+		return (
+			<p>
+				{ __(
+					'Fetching data from the Odds API...',
+					'ocbc'
+				) }
+			</p>
+		);
+	};
+
 	return (
-		<p { ...useBlockProps() }>
-			{ __(
-				'Odds Comparison – hello from the editor!',
-				'ocbc'
-			) }
-		</p>
+		<div>
+			<h3>
+				{ __(
+					'Upcoming Odds',
+					'ocbc'
+				) }
+			</h3>
+			<ul>
+				{ oddsData.map((item, index) => {
+					return (
+						<li key={index}>
+							{item.id}
+						</li>
+					)				
+				}) }
+			</ul>
+		</div>
 	);
 }
