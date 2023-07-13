@@ -64,4 +64,5 @@
 			</fieldset>
 		</div>
 	</div>
+	<p id="demo" style="color:red;"></p>
 </section>
