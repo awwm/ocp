@@ -7,7 +7,7 @@ import SaveSelectedItems from './SaveSelectedItems';
 import './editor.scss';
 
 const API_URL =
-  'https://api.the-odds-api.com/v4/sports/upcoming/odds/?regions=eu&markets=h2h&apiKey=81fcb06f4f39ab2a3faf0dbe93e23524';
+  'https://api.the-odds-api.com/v4/sports/upcoming/odds/?regions=eu&markets=h2h&apiKey=get-your-key';
 
 const Edit = (props) => {
   const { attributes, setAttributes } = props;

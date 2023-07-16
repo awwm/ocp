@@ -39,5 +39,5 @@ To get WordPress installation running follow these simple steps.
 
 2. Registered both blocks through `block.json` but frontend rendering one by php and another one by js save method.
 3. I did not get the proper api end point so i did little bit research i found free odds api 
-   ```URL is https://api.the-odds-api.com/v4/sports/upcoming/odds/?regions=eu&markets=h2h&apiKey=81fcb06f4f39ab2a3faf0dbe93e23524 ```
+   ```URL is https://api.the-odds-api.com/v4/sports/upcoming/odds/?regions=eu&markets=h2h&apiKey=get_your_key ```
 4. As per mine limited knowledge regarding odds so i just tried to display different sports and bookkeepers prices according to home and away teams.
