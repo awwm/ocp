@@ -35,14 +35,24 @@ const Edit = (props) => {
       });
   }, []);
 
-  const onItemChange = (itemID, isChecked) => {
+  const onItemChange = (item, isChecked) => {
     const updatedSelectedItems = isChecked
-      ? [...selectedItems, itemID]
-      : selectedItems.filter((id) => id !== itemID);
+      ? [...selectedItems, item]
+      : selectedItems.filter((selectedItem) => selectedItem.id !== item.id);
 
     setSelectedItems(updatedSelectedItems);
     setAttributes({ selectedItems: updatedSelectedItems });
   };
+
+  // Group items by sport_title
+  const groupedData = data.reduce((acc, item) => {
+    const sportTitle = item.sport_title;
+    if (!acc[sportTitle]) {
+      acc[sportTitle] = [];
+    }
+    acc[sportTitle].push(item);
+    return acc;
+  }, {});
 
   return (
     <div {...useBlockProps}>
@@ -53,13 +63,34 @@ const Edit = (props) => {
         <p>Error fetching data.</p>
       ) : (
         <div>
-          {data.map((item) => (
-            <CheckboxControl
-              key={item.id}
-              label={item.id}
-              checked={selectedItems.includes(item.id)}
-              onChange={(isChecked) => onItemChange(item.id, isChecked)}
-            />
+          {Object.entries(groupedData).map(([sportTitle, items]) => (
+            <div key={sportTitle}>
+				<h3>{sportTitle}</h3>
+				{items.map((item) => (
+					<div key={item.id}>
+					<CheckboxControl
+						label={`${item.home_team} vs ${item.away_team}`}
+						checked={selectedItems.some((selectedItem) => selectedItem.id === item.id)}
+						onChange={(isChecked) => onItemChange(item, isChecked)}
+					/>
+					<ul>
+						{item.bookmakers.map((broker) => (
+						<li key={broker.key}>{broker.title}
+							{broker.markets.map((market) => (
+								<div key={market.key}>
+									<ul>
+										{market.outcomes.map((outcome) => (
+										<li key={outcome.name}>{`${outcome.name} - Price: ${outcome.price}`}</li>
+										))}
+									</ul>
+								</div>
+							))}
+						</li>
+						))}
+					</ul>
+					</div>
+				))}
+            </div>
           ))}
         </div>
       )}

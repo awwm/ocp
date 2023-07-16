@@ -21,21 +21,56 @@ import { useBlockProps } from '@wordpress/block-editor';
  *
  * @return {WPElement} Element to render.
  */
+import { groupBy } from 'lodash'; // Import lodash's groupBy function
+
+const groupItemsBySportTitle = (items) => {
+  return groupBy(items, 'sport_title');
+};
+
 const save = ({ attributes }) => {
-    return (
-      <div>
-        <h2>{__('Selected Items')}</h2>
-        {attributes.selectedItems.length === 0 ? (
-          <p>No selected items.</p>
-        ) : (
-          <ul>
-            {attributes.selectedItems.map((itemId) => (
-              <li key={itemId}>{itemId}</li>
-            ))}
-          </ul>
-        )}
-      </div>
-    );
-}
+  const groupedItems = groupItemsBySportTitle(attributes.selectedItems);
+
+  return (
+    <div>
+      <h2>{__('Selected Items')}</h2>
+      {attributes.selectedItems.length === 0 ? (
+        <p>No selected items.</p>
+      ) : (
+        <div>
+          {Object.entries(groupedItems).map(([sportTitle, items]) => (
+            <div key={sportTitle}>
+              <h3 class="sports-title">{sportTitle}</h3>
+              {items.map((item) => (
+                <div class="match-wrapper" key={item.id}>
+                  <p class="teams" style="font-weight:bold;"><span style="color:green;">{`${item.home_team}`}</span> VS <span style="color:red;">{`${item.away_team}`}</span></p>
+                  {item.bookmakers.map((broker) => (
+                    <div class="pricing" key={broker.key}>
+                      <div class="bookmaker-title">
+                        <b>{broker.title}</b>
+                      </div>
+                      {broker.markets.map((market) => (
+                        <div key={market.key}>
+                           <p class="prices"> Price : 
+                            {market.outcomes.map((outcome) => (
+                              <span class={item.home_team === outcome.name ? 'home' : 'away' }>
+                              {`${outcome.price}`}
+                            </span>
+                            ))}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
 
 export default save;
+
+
