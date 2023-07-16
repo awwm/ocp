@@ -17,5 +17,13 @@
 	"devDependencies": {
 		"@wordpress/scripts": "^26.8.0",
 		"odds-converter": "^1.0.4"
+	},
+	"dependencies": {
+		"@wordpress/block-editor": "^12.5.0",
+		"@wordpress/components": "^25.3.0",
+		"@wordpress/data": "^9.7.0",
+		"@wordpress/element": "^5.14.0",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0"
 	}
 }

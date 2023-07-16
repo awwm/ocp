@@ -21,13 +21,21 @@ import { useBlockProps } from '@wordpress/block-editor';
  *
  * @return {WPElement} Element to render.
  */
-export default function save() {
-	return (
-		<p { ...useBlockProps.save() }>
-			{ __( 
-            'FFetching data from the Odds API...',
-            'ocbc'
-            ) };
-		</p>
-	);
+const save = ({ attributes }) => {
+    return (
+      <div>
+        <h2>{__('Selected Items')}</h2>
+        {attributes.selectedItems.length === 0 ? (
+          <p>No selected items.</p>
+        ) : (
+          <ul>
+            {attributes.selectedItems.map((itemId) => (
+              <li key={itemId}>{itemId}</li>
+            ))}
+          </ul>
+        )}
+      </div>
+    );
 }
+
+export default save;

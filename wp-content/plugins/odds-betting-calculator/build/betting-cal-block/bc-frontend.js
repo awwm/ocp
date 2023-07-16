@@ -1,1 +1,302 @@
-(()=>{var t={796:t=>{var e=function(t){return!isNaN(t)&&parseInt(t)==parseFloat(t)},n=function(t,e){var n;for(t=Math.abs(t),e=Math.abs(e);e>0;)n=e,e=t%e,t=n;return t},i=function(t,e){return(t=Math.abs(t))*((e=Math.abs(e))/n(t,e))};function a(t){this.name="NotAFractionError",this.message=t||"Not a Fraction"}function r(t,n){if(void 0===t)throw new a("You must specify a fraction");if(!(this instanceof r))return new r(t,n);if(t instanceof r&&void 0===n)return this.n=t.n,void(this.d=t.d);if(e(t)&&e(n))return this.n=parseInt(t),void(this.d=parseInt(n));if(e(t)&&void 0===n)return this.n=parseInt(t),void(this.d=1);if("number"==typeof t){var i=""+t,o=i.length-i.indexOf(".")-1;return this.n=parseInt(i.replace(".","")),void(this.d=Math.pow(10,o))}throw new a("Cannot instantiate Fraction("+t+(void 0===n?"":n)+")")}a.prototype=new Error,a.prototype.constructor=a,r.prototype.toString=r.prototype.toS=r.prototype.inspect=function(){return"("+this.n+"/"+this.d+")"},r.prototype.toNumber=function(){return this.n/this.d},r.prototype.toLatex=function(){return"\\frac{"+this.n+"}{"+this.d+"}"},r.prototype.toMathML=function(){return"<mfrac><mn>"+this.n+"</mn><mn>"+this.d+"</mfrac>"},r.prototype.simplify=function(){this.d<0&&(this.n*=-1,this.d*=-1);var t=n(this.n,this.d);return 1==t?this:new r(this.n/t,this.d/t)},r.prototype.inverse=function(){return new r(this.d,this.n)},r.prototype.times=r.prototype.multiply=function(t,n){if(t instanceof r&&void 0===n)return new r(this.n*t.n,this.d*t.d).simplify();if(e(t)&&e(n))return this.times(new r(t,n));throw new a("Cannot multiply "+this+" with n="+t+", d="+n)},r.prototype.dividedBy=r.prototype.div=function(t,n){if(t instanceof r&&void 0===n)return t.inverse().times(this);if(e(t)&&e(n))return this.times(new r(n,t));throw new a("Cannot divide "+this+" by n="+t+", d="+n)},r.prototype.plus=function(t,n){if(t instanceof r&&void 0===n){var o=i(this.d,t.d);return new r(this.n*o/this.d+t.n*o/t.d,o)}if(e(t)&&e(n))return this.plus(new r(t,n));throw new a("Cannot add "+this+" to n="+t+", d="+n)},r.prototype.minus=function(t,n){if(t instanceof r&&void 0===n){var o=i(this.d,t.d);return new r(this.n*o/this.d-t.n*o/t.d,o)}if(e(t)&&e(n))return this.minus(new r(t,n));throw new a("Cannot add "+this+" to n="+t+", d="+n)},t.exports.iA=r},223:(t,e,n)=>{var i=n(796).iA,a=a||{};a.decimal={toAmerican:function(t){return moneyline=t<2?(-100/(t-1)).toPrecision(5):(100*(t-1)).toPrecision(5),moneyline},toFractional:function(t){return fraction=new i(t-1),fraction}},a.fraction={toAmerican:function(t,e){return moneyline=t>e?t/e*100:-100/(t/e),moneyline},toDecimal:function(t,e){return decimal=t/e+1}},a.american={toDecimal:function(t){return decimal=t>0?t/100+1:(100/Math.abs(t)+1).toPrecision(3),decimal},toFractional:function(t){return fraction=new i(t>0?t/100:100/Math.abs(t)),fraction}},t.exports=a}},e={};function n(i){var a=e[i];if(void 0!==a)return a.exports;var r=e[i]={exports:{}};return t[i](r,r.exports,n),r.exports}(()=>{let t=n(223);document.addEventListener("DOMContentLoaded",(()=>{const e=document.getElementById("winning"),n=document.getElementById("payout"),i=document.querySelector(".form-wrapper"),a=i.querySelectorAll("input"),r=i.querySelector("#calc-bet-amount"),o=i.querySelector("#calc-moneyline"),u=i.querySelector("#calc-fractional"),l=i.querySelector("#calc-decimal"),c=i.querySelector("#calc-implied"),s=(t,e)=>t/e*100,d=i=>{let a=i.target;if(a.checkValidity()){if(document.getElementById("demo").innerHTML="",r.value>0&&"calc-moneyline"===a.name&&(a.value<-100||a.value>=100)&&(u.value=t.american.toFractional(parseInt(a.value)).simplify().n+"/"+t.decimal.toFractional(parseInt(a.value)).simplify().d,l.value=t.american.toDecimal(parseInt(a.value),r.value),c.value=s(r.value,a.value).toFixed(2)+" %",e.innerText=(r.value*l.value-r.value).toFixed(2),n.innerText=(r.value*l.value).toFixed(2)),r.value>0&&"calc-decimal"===a.name&&a.value>0&&(u.value=t.decimal.toFractional(parseFloat(a.value)).simplify().n+"/"+t.decimal.toFractional(parseFloat(a.value)).simplify().d,o.value=t.decimal.toAmerican(parseFloat(a.value)),c.value=s(r.value,o.value).toFixed(2)+" %",e.innerText=(r.value*l.value-r.value).toFixed(2),n.innerText=(r.value*l.value).toFixed(2)),r.value>0&&"calc-fractional"===a.name){let i=u.value.split("/");o.value=t.fraction.toAmerican(parseInt(i[0]),parseInt(i[1])),l.value=t.american.toDecimal(parseInt(o.value),r.value),c.value=s(r.value,o.value).toFixed(2)+" %",e.innerText=(r.value*l.value-r.value).toFixed(2),n.innerText=(r.value*l.value).toFixed(2)}}else document.getElementById("demo").innerHTML=a.validationMessage};["input","change"].forEach((t=>{a.forEach((e=>e.addEventListener(t,d,!1)))}))}))})()})();
+/******/ (() => { // webpackBootstrap
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./node_modules/fractional-arithmetic/fractional-arithmetic.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/fractional-arithmetic/fractional-arithmetic.js ***!
+  \*********************************************************************/
+/***/ ((module) => {
+
+/**
+ * fractional-arithmetic.js is a javascript library for doing fractional arithmetic
+ * Author: Alexandros Georgiou <alex.georgiou@gmail.com>
+ * 
+ */
+
+var isInteger = function(i) {
+	return !isNaN( i ) && ( parseInt( i ) == parseFloat( i ) );
+};
+
+module.exports.isInteger = isInteger;
+
+var gcd = function( a, b) {
+    a = Math.abs( a );
+    b = Math.abs( b );
+    var temp;
+    while ( b > 0 ) {
+        temp = b;
+        b = a % b;
+        a = temp;
+    }
+    return a;
+};
+
+module.exports.gcd = gcd;
+
+var lcm = function( a, b ) {
+    a = Math.abs( a );
+    b = Math.abs( b );
+    return a * ( b / gcd( a, b ) );
+};
+module.exports.lcm = lcm;
+
+function NotAFractionError(message) {
+    this.name = 'NotAFractionError';
+    this.message = message || 'Not a Fraction';
+}
+
+NotAFractionError.prototype = new Error();
+NotAFractionError.prototype.constructor = NotAFractionError;
+
+function Fraction( n, d ) {
+	
+	if ( typeof(n) === 'undefined' )
+		throw new NotAFractionError( 'You must specify a fraction' );
+	
+	// create without new keyword
+	if ( ! ( this instanceof Fraction ) ) {
+		return new Fraction( n, d );
+	}
+	
+	// create from fraction
+	if ( n instanceof Fraction && typeof(d) === 'undefined' ) {
+		this.n = n.n;
+		this.d = n.d;
+		return;
+	}
+	
+	//create from integers
+	if ( isInteger(n) && isInteger(d)) {
+		this.n = parseInt(n);
+		this.d = parseInt(d);
+		return;
+	}
+	
+	//create from one integer
+	if ( isInteger(n) && typeof(d) === 'undefined') {
+		this.n = parseInt(n);
+		this.d = 1;
+		return;
+	}
+	
+	
+	if ( typeof(n) === 'number' ) {
+		var ns = '' + n;
+		var decimals = ns.length - ns.indexOf( '.' ) - 1;
+		this.n = parseInt( ns.replace( '.', '' ) );
+		this.d = Math.pow( 10, decimals );
+		return;
+	}
+	
+	throw new NotAFractionError(
+		'Cannot instantiate Fraction(' + n + ( typeof(d) === 'undefined' ? '' : d ) + ')'
+	);
+}
+
+Fraction.prototype.toString = Fraction.prototype.toS = Fraction.prototype.inspect = function() {
+	return '(' + this.n + '/' + this.d + ')';
+};
+
+Fraction.prototype.toNumber = function () {
+	return this.n / this.d;
+};
+
+Fraction.prototype.toLatex = function() {
+	return '\\frac{' + this.n + '}{' + this.d + '}';
+};
+
+Fraction.prototype.toMathML = function() {
+	return '<mfrac><mn>' + this.n + '</mn><mn>' + this.d + '</mfrac>';
+};
+
+Fraction.prototype.simplify = function() {
+    if ( this.d < 0 ) {
+        this.n *= -1;
+        this.d *= -1;
+    }
+	var g = gcd( this.n, this.d );
+	return g == 1 ? this : new Fraction( this.n / g, this.d / g);
+};
+
+Fraction.prototype.inverse = function() {
+	return new Fraction( this.d, this.n );
+};
+
+Fraction.prototype.times = Fraction.prototype.multiply = function( n, d ) {
+	
+	if ( n instanceof Fraction && typeof(d) === 'undefined' ) {
+		return new Fraction( this.n * n.n, this.d * n.d ).simplify();
+	} else if ( isInteger(n) && isInteger(d) ) {
+		return this.times( new Fraction( n, d ) );
+	}
+	throw new NotAFractionError('Cannot multiply ' + this + ' with n=' + n + ', d=' + d );
+};
+
+Fraction.prototype.dividedBy = Fraction.prototype.div = function( n, d ) {
+	
+	if ( n instanceof Fraction && typeof(d) === 'undefined' ) {
+		return n.inverse().times( this );
+	} else if ( isInteger(n) && isInteger(d) ) {
+		return this.times( new Fraction( d, n ) );
+	}
+	throw new NotAFractionError('Cannot divide '+this+' by n='+n+', d='+d);
+};
+
+Fraction.prototype.plus = function( n, d ) {
+	
+	if ( n instanceof Fraction && typeof(d) === 'undefined') {
+		var l = lcm( this.d, n.d );
+		return new Fraction( this.n * l / this.d + n.n * l / n.d, l );
+	} else if ( isInteger(n) && isInteger(d) ) {
+		return this.plus( new Fraction(n,d) );
+	}
+	throw new NotAFractionError( 'Cannot add ' + this + ' to n=' + n + ', d=' + d );
+};
+
+Fraction.prototype.minus = function( n, d ) {
+	
+	if ( n instanceof Fraction && typeof(d) === 'undefined' ) {
+		var l = lcm(this.d,n.d);
+		return new Fraction( this.n * l / this.d - n.n * l / n.d, l);
+	} else if (isInteger(n) && isInteger(d)) {
+		return this.minus( new Fraction(n,d) );
+	}
+	throw new NotAFractionError( 'Cannot add ' + this + ' to n=' + n + ', d=' + d);
+};
+
+module.exports.Fraction = Fraction;
+
+
+/***/ }),
+
+/***/ "./node_modules/odds-converter/index.js":
+/*!**********************************************!*\
+  !*** ./node_modules/odds-converter/index.js ***!
+  \**********************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var Fraction = (__webpack_require__(/*! fractional-arithmetic */ "./node_modules/fractional-arithmetic/fractional-arithmetic.js").Fraction);
+var OddsConverter = OddsConverter || {};
+
+OddsConverter.decimal = {
+    toAmerican: function(decimal){
+        decimal < 2.0 ? moneyline = ( (-100)/(decimal - 1) ).toPrecision(5) : moneyline = ( (decimal - 1) * 100 ).toPrecision(5);
+        return moneyline;
+    },
+    toFractional: function(decimal){
+        fraction = new Fraction((decimal - 1));
+        return fraction;
+    }
+}
+OddsConverter.fraction = {
+    toAmerican: function(n,d){
+        n > d ? moneyline = ((n/d) * 100) : moneyline = (-100)/(n/d);
+        return moneyline;
+    },
+    toDecimal: function(n,d){
+        return decimal = (n/d) + 1;
+    }
+}
+
+OddsConverter.american = {
+    toDecimal: function(moneyline){
+        moneyline > 0 ? decimal = (moneyline/100) + 1 : decimal = ((100/Math.abs(moneyline)) + 1).toPrecision(3);
+        return decimal;
+    },
+    toFractional: function(moneyline){
+        moneyline > 0 ? fraction = new Fraction(moneyline/100) : fraction = new Fraction(100/Math.abs(moneyline));
+        return fraction;
+    }
+}
+
+module.exports = OddsConverter;
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+(() => {
+/*!**********************************************!*\
+  !*** ./src/betting-cal-block/bc-frontend.js ***!
+  \**********************************************/
+let odds = __webpack_require__(/*! odds-converter */ "./node_modules/odds-converter/index.js");
+document.addEventListener('DOMContentLoaded', () => {
+  const winningVal = document.getElementById('winning');
+  const payoutVal = document.getElementById('payout');
+  const betForm = document.querySelector('.form-wrapper');
+  const inputs = betForm.querySelectorAll('input');
+  const calcBetAmount = betForm.querySelector('#calc-bet-amount');
+  const moneyLineVal = betForm.querySelector('#calc-moneyline');
+  const fractionVal = betForm.querySelector('#calc-fractional');
+  const decimalVal = betForm.querySelector('#calc-decimal');
+  const impliedVal = betForm.querySelector('#calc-implied');
+  const calculatePercentage = (x, y) => {
+    return x / y * 100;
+  };
+  const CalculateNewBalance = e => {
+    let target = e.target;
+    if (!target.checkValidity()) {
+      document.getElementById('demo').innerHTML = target.validationMessage;
+    } else {
+      document.getElementById('demo').innerHTML = '';
+      if (calcBetAmount.value > 0 && target.name === 'calc-moneyline' && (target.value < -100 || target.value >= 100)) {
+        fractionVal.value = odds.american.toFractional(parseInt(target.value)).simplify().n + '/' + odds.decimal.toFractional(parseInt(target.value)).simplify().d;
+        decimalVal.value = odds.american.toDecimal(parseInt(target.value), calcBetAmount.value);
+        impliedVal.value = calculatePercentage(calcBetAmount.value, target.value).toFixed(2) + ' %';
+        winningVal.innerText = (calcBetAmount.value * decimalVal.value - calcBetAmount.value).toFixed(2);
+        payoutVal.innerText = (calcBetAmount.value * decimalVal.value).toFixed(2);
+      }
+      if (calcBetAmount.value > 0 && target.name === 'calc-decimal' && target.value > 0) {
+        fractionVal.value = odds.decimal.toFractional(parseFloat(target.value)).simplify().n + '/' + odds.decimal.toFractional(parseFloat(target.value)).simplify().d;
+        moneyLineVal.value = odds.decimal.toAmerican(parseFloat(target.value));
+        impliedVal.value = calculatePercentage(calcBetAmount.value, moneyLineVal.value).toFixed(2) + ' %';
+        winningVal.innerText = (calcBetAmount.value * decimalVal.value - calcBetAmount.value).toFixed(2);
+        payoutVal.innerText = (calcBetAmount.value * decimalVal.value).toFixed(2);
+      }
+      if (calcBetAmount.value > 0 && target.name === 'calc-fractional') {
+        let fractionArr = fractionVal.value;
+        let fractionArrVal = fractionArr.split("/");
+        moneyLineVal.value = odds.fraction.toAmerican(parseInt(fractionArrVal[0]), parseInt(fractionArrVal[1]));
+        decimalVal.value = odds.american.toDecimal(parseInt(moneyLineVal.value), calcBetAmount.value);
+        impliedVal.value = calculatePercentage(calcBetAmount.value, moneyLineVal.value).toFixed(2) + ' %';
+        winningVal.innerText = (calcBetAmount.value * decimalVal.value - calcBetAmount.value).toFixed(2);
+        payoutVal.innerText = (calcBetAmount.value * decimalVal.value).toFixed(2);
+      }
+    }
+  };
+  ['input', 'change'].forEach(evt => {
+    inputs.forEach(input => input.addEventListener(evt, CalculateNewBalance, false));
+  });
+});
+})();
+
+/******/ })()
+;
+//# sourceMappingURL=bc-frontend.js.map
